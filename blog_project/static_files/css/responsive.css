@@ -1,0 +1,277 @@
+
+
+/*--------------------------------------------------------------------- File Name: responsive.css ---------------------------------------------------------------------*/
+
+
+/*------------------------------------------------------------------- 991px x 768px ---------------------------------------------------------------------*/
+
+@media (min-width: 1200px) and (max-width: 1342px) {
+    .banner_main {
+        min-height: 873px;
+    }
+    .max_low {
+        width: 62%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    .banner_main {
+        min-height: 826px;
+    }
+    #banner1 a.carousel-control-prev {
+        top: 120%;
+    }
+    .text-bg h1 {
+        font-size: 65px;
+        line-height: 72px;
+    }
+    .titlepage h2 {
+        font-size: 48px;
+    }
+    ul.conat_info li {
+        padding: 0 5px;
+    }
+    ul.conat_info li a {
+        font-size: 16px;
+    }
+    .max_low {
+        width: 57%;
+    }
+    .max_wi {
+        width: 76%;
+    }
+    .form_luxury {
+        font-size: 15px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .d_none {
+        display: none;
+    }
+    .text-bg h1 {
+        font-size: 43px;
+        padding-bottom: 20px;
+        line-height: 44px;
+    }
+    .banner_main {
+        padding: 152px 0px 0px 0px;
+        min-height: 724px;
+    }
+    #banner1 a.carousel-control-prev {
+        top: 123%;
+    }
+    .text-bg span {
+        font-size: 16px;
+        line-height: 25px;
+        padding-right: 12px;
+    }
+    .titlepage h2 {
+        font-size: 37px;
+    }
+    .rental {
+        padding: 0px 0 155px 0;
+    }
+    .luxury {
+        padding: 10px 0 230px 0;
+    }
+    .form_date {
+        max-width: 732px;
+    }
+    .max_low {
+        width: 72%;
+    }
+    .testimonial {
+        padding: 0px 0 270px 0;
+    }
+    .footer h3 {
+        font-size: 28px;
+    }
+    .footer p {
+        padding-right: 21px;
+        font-size: 15px;
+    }
+    ul.social_icon li a {
+        width: 40px;
+        font-size: 21px;
+        margin: 0 2px;
+        height: 40px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767px) {
+    .banner_main {
+        padding: 124px 0px 0px 0px;
+    }
+    .ban_car .read_more {
+        margin-top: 60px;
+        margin-bottom: 30px;
+        margin-left: 0%;
+    }
+    .text-bg h1 {
+        font-size: 48px;
+        line-height: 51px;
+    }
+    #banner1 a.carousel-control-prev {
+        top: 110%;
+    }
+    #banner1 a.carousel-control-next {
+        top: 116%;
+    }
+    .titlepage h2 {
+        font-size: 31px;
+    }
+    .about .titlepage {
+        max-width: 537px;
+    }
+    .rental {
+        padding: 0px 0 155px 0;
+    }
+    #rental1 a.carousel-control-next {
+        right: 10px;
+    }
+    #rental1 a.carousel-control-prev {
+        left: 10px;
+    }
+    .max_wi {
+        width: 89%;
+    }
+    .tinueCar {
+        margin-bottom: 30px;
+    }
+    .testimonial_box {
+        margin: 120px 0px 27px 0px;
+        padding: 40px 0px 40px 0px;
+    }
+    .testimonial_box i {
+        margin-right: 0px;
+    }
+    .testimonial_box,
+    .testimonial_box figure,
+    .testimonial_box h3,
+    .testimonial_box p,
+    .testimonial_box i img {
+        transform: skew(0deg);
+        margin-left: 0;
+    }
+    .footer h3 {
+        padding-top: 20px;
+    }
+    .padding_right2 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .footer {
+        padding-top: 0;
+    }
+    .d_none {
+        display: none;
+    }
+}
+
+@media (max-width: 575px) {
+    .header {
+        padding: 30px 0px 15px 0px;
+    }
+    .logo {
+        border: inherit;
+        float: left;
+        margin-top: 0px !important;
+    }
+    .banner_main {
+        padding: 107px 0px 0px 0px;
+        min-height: 750px;
+    }
+    .text-bg h1 {
+        padding-top: 15px;
+        font-size: 26px;
+        padding-bottom: 20px;
+        line-height: 32px;
+    }
+    .ban_car .read_more {
+        margin-top: 43px;
+        margin-left: 0%;
+    }
+    .text-bg span {
+        font-size: 16px;
+        line-height: 26px;
+        padding-right: 10px;
+    }
+    #banner1 a.carousel-control-next {
+        top: 114%;
+    }
+    #banner1 a.carousel-control-prev {
+        top: 110%;
+    }
+    .titlepage h2 {
+        font-size: 37px;
+    }
+    .about .titlepage {
+        padding-bottom: 30px;
+    }
+    .rental .titlepage p {
+        margin: 0;
+    }
+    #rental1 a.carousel-control-next {
+        right: 10px;
+    }
+    #rental1 a.carousel-control-prev {
+        left: 10px;
+    }
+    .rental {
+        padding: 0px 0 188px 0;
+    }
+    .luxury {
+        padding: 0px 0 205px 0;
+    }
+    .tinueCar {
+        margin-bottom: 30px;
+    }
+    .max_low {
+        margin-top: 10px;
+        width: 100%;
+    }
+    .testimonial {
+        padding: 0px 0 270px 0;
+    }
+    .testimonial_box {
+        margin: 120px 0px 27px 0px;
+        padding: 40px 0px 40px 0px;
+    }
+    .testimonial_box p {
+        font-size: 15px;
+        padding: 11px 9px;
+        line-height: 30px;
+    }
+    .testimonial_box,
+    .testimonial_box figure,
+    .testimonial_box h3,
+    .testimonial_box p,
+    .testimonial_box i img {
+        transform: skew(0deg);
+        margin-left: 0px;
+    }
+    .testimonial_box i {
+        margin-right: 0;
+    }
+    #myCarousel .carousel-indicators {
+        bottom: -28px;
+    }
+    .footer h3 {
+        padding-top: 20px;
+    }
+    .padding_right2 {
+        padding-right: 0;
+        padding-left: 0;
+    }
+    .footer {
+        padding-top: 0;
+    }       
+    .d_none {
+        display: none;
+    }
+    .right_bottun {
+        margin-top: -40px;
+    }
+}
+

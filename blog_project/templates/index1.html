@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <div>
+        <h1>Postlar var (çok iyi)</h1>
+    </div>
+    <div>
+        {% for post in posts %}
+        
+            <div><a href="{% url 'blog:post-content' post.id %}">{{post.title}} oku</a></div>
+                  <td>{{post.author}}</td>
+                  <td>{{post.body}}</td>
+                  <td>{{post.puslish}}</td>
+                  <td>{{post.image}}</td>
+                  {% if post.image %}
+                    <p>{{post.image.url}}</p>
+                    <td><img src="{{post.image.url}}" alt="{{post.title}}" style="width: 200px; height: 200px;"></td><!--blog içindeyken nasıl çalışıyo bu-->
+                  {% endif %}                 
+                  <td><a href="{{post.url}}">Link</a></td>
+              <br/>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+
+
+<!--<tr>
+                  <td>{{post.title}}</td>
+                  <td>{{post.author}}</td>
+                  <td>{{post.body}}</td>
+                  <td>{{post.puslish}}</td>
+                  <td>{{post.image}}</td>
+                  <td><img src="../{{post.image}}" alt="{{post.title}}" style="width: 200px; height: 200px;"></td>
+                  blog içindeyken nasıl çalışıyo bu             
+                  <td><a href="{{post.url}}">Link kanka</a></td>
+</tr>-->
