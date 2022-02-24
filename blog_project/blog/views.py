@@ -70,8 +70,7 @@ def login_view(request):#add postta kayıtlı değilse loginde girişi sağladı
                 login(request,user)
                 return redirect('blog:index')##ana sayfa burası
             else:
-                messages.error(request, 'Invalid login.')
-                return redirect("blog:login") 
+                 
     else:
         form=AccountAuthenticationForm()
     context['login_form'] = form

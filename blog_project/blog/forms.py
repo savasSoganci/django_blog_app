@@ -13,19 +13,19 @@ class RegistrationForm(UserCreationForm):#Form validasyon sağlıyor.
         fields=("email","username","password1","password2") 
 
 
-class AccountAuthenticationForm(forms.ModelForm):
+class AccountAuthenticationForm(forms.Form):
+    username=forms.CharField(label='Username',widget=forms.PasswordInput)
     password=forms.CharField(label='Password',widget=forms.PasswordInput)
-
-    class Meta:
+    '''class Meta:#Model FORM OLURSA KULLANIRSIN BUNU O ZAMAN AŞAĞIDAKİ DEF CLEAN'İ YAZMAK ZORUNDASIN. ÇÜNKÜ MODELFORM'UN CLEAN'İ BU VAR MI YOK MU DİYE KONTROL EDİYOR VARSA FORMU ONAYLAMIYOR USERNMAME İÇİN. BU YÜZDEN KENDİN OVERRİDE ETMELİSİN AMA SAÇMA SEN FORMDA DATABASE İLE ALAKALI BİR ŞEY YAPMAMALISIN. 
         model=User
-        fields=('username','password')        
+        fields=('username','password')'''        
     '''def clean(self):
         if(self.is_valid()):
             username=self.cleaned_data['username']
             password=self.cleaned_data['password']    
             if not authenticate(username=username,password=password):
                 raise forms.ValidationError("Invalid login.")''' #Bunu burada yazman mantıksız formlarda datayla alakalı kontrol yapılmaz.
-
+    
 
 class AddPostForm(forms.ModelForm):
     publish = forms.DateTimeField(
@@ -41,4 +41,6 @@ class AddPostForm(forms.ModelForm):
     class Meta:
         model=Post
         fields=("title",'slug','content','body','publish','status','image','url','email')
-        
+    
+
+    
