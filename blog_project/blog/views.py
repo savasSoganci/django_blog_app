@@ -21,7 +21,7 @@ def blog_title_getirme(request):
 
 
 def blog_object(request,id):
-    import ipdb;ipdb.set_trace()
+    #import ipdb;ipdb.set_trace()
     post=get_object_or_404(Post,id=id)
     #post=Post.published.filter(id=id).first().first()  Burada bir dizi değil obje döndürüyon forla kullanamazsın. Forla kullancaksan firstsüz halini yaz.
     return render(request,"indexbody.html",{"post1":post})
@@ -106,6 +106,7 @@ def add_post(request):
 
 
 def update_post(request,id):
+    
     user=request.user
     context={}
     if not user.is_authenticated:#Djangonun gömülü authenticated kontrolü yapan decoratorü var. Onu kullan
@@ -116,13 +117,13 @@ def update_post(request,id):
         if form.is_valid():
             form.save()
             return redirect('blog:repository')
-        context['add_post_form']=form
-        return render(request,'addPost.html',context)  
+          
     form=AddPostForm(instance=blog_post_obj)
     context['add_post_form']=form
     return render(request,'addPost.html',context)
 
 def post_slug_update(request):
+    #import ipdb;ipdb.set_trace()
     if request.method == 'POST':
         post_title = request.POST.get('title_value')
         title_slug=Post.making_slug(post_title)#generate_slug diyebilirsin. ing'li isimlendirme yapma.

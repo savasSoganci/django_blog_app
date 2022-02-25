@@ -84,8 +84,10 @@ class Post(TrackerMixin):
     #TODO cachelemeye bak.
     @staticmethod
     def making_slug(title_string):
+        title_string=title_string.strip(" ")
         baseslug = slugify(title_string)
-        deneme=Post.objects.filter(title='deneme999')#Burada aslında sorgu yapıyoruz. Onu deneme değişkenine atıyoruz.
+        #deneme=Post.objects.filter(title='deneme999')#Burada aslında sorgu yapıyoruz. Onu deneme değişkenine atıyoruz.
+        #Alttaki get_object_or_None Post yerine deneme koysan query vermiş olursun ve başlığı deneme999 olanlar için algoritmayı çalıştırır.
         if(get_object_or_None(Post,slug=baseslug,title=title_string) is not None):#get direkt database'e istek atar ama filter atmaz değişkene attığında onla ilgili bir query oluşturur sadece nerede atacağını nasıl karar verdiğine aşağıdaki metodu araştırarak bul.
             slug_number=2#Magic methods,dunder methods aynı şey araştır
             while True:              
