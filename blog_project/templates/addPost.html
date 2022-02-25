@@ -17,7 +17,7 @@
     <form class='create-form' method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{add_post_form.media}}
-                    {{add_post_form.as_p}}              
+                    {{add_post_form.as_p}}                       
                     <button type="submit">Register</button>
                 </form>
     <!--{% if datetime %}

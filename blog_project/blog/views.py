@@ -1,14 +1,11 @@
-import json
-from django.forms import formset_factory
 from django.shortcuts import render,get_object_or_404,redirect
 from django.http import HttpResponse
 from .models import (Post)
 from blog.forms import (RegistrationForm,AccountAuthenticationForm,AddPostForm)
 from django.contrib.auth import login,authenticate
 from django.contrib.auth import logout
-from django.contrib.auth.models import User
 from django.contrib import messages
-
+from django.db.models import Avg, Count, Min, Sum
 
 def home(request):
     return HttpResponse("Blog Home")
@@ -24,6 +21,7 @@ def blog_title_getirme(request):
 
 
 def blog_object(request,id):
+    import ipdb;ipdb.set_trace()
     post=get_object_or_404(Post,id=id)
     #post=Post.published.filter(id=id).first().first()  Burada bir dizi değil obje döndürüyon forla kullanamazsın. Forla kullancaksan firstsüz halini yaz.
     return render(request,"indexbody.html",{"post1":post})
@@ -70,7 +68,8 @@ def login_view(request):#add postta kayıtlı değilse loginde girişi sağladı
                 login(request,user)
                 return redirect('blog:index')##ana sayfa burası
             else:
-                 
+                messages.error(request,"Invalid login")#Aynı işi yapıyorlar alt ile
+                messages.add_message(request, messages.ERROR, 'Invalid login.')             
     else:
         form=AccountAuthenticationForm()
     context['login_form'] = form
@@ -79,7 +78,7 @@ def login_view(request):#add postta kayıtlı değilse loginde girişi sağladı
 
 def my_repository(request):
     if request.user.is_authenticated:
-        user_posts=Post.objects.filter(author=request.user)
+        user_posts=Post.published.filter(author=request.user)
         return render(request,"repository.html",{"user_posts":user_posts})
     else:
         return redirect("blog:login")
@@ -101,20 +100,27 @@ def add_post(request):
         context['add_post_form']=form
 
     else:
-        form=AddPostForm()
+        form=AddPostForm()#class based view bak.
         context['add_post_form']=form
     return render(request, 'addPost.html',context)    
 
 
 def update_post(request,id):
     user=request.user
+    context={}
     if not user.is_authenticated:#Djangonun gömülü authenticated kontrolü yapan decoratorü var. Onu kullan
         return redirect("blog:login")
-    context={}
-    blog_post=get_object_or_404(Post,id=id)
-    if(request.POST==True):
-        form=AddPostForm()
-
+    blog_post_obj=get_object_or_404(Post,id=id)    
+    if request.method == 'POST':
+        form = AddPostForm(request.POST,request.FILES,instance=blog_post_obj)#Dolu yollayınca var mı diye bakıyo varsa doluyu boşsa boş nesneyi, boş yollayınca boş bir tane bize geri mi döndürüyo?
+        if form.is_valid():
+            form.save()
+            return redirect('blog:repository')
+        context['add_post_form']=form
+        return render(request,'addPost.html',context)  
+    form=AddPostForm(instance=blog_post_obj)
+    context['add_post_form']=form
+    return render(request,'addPost.html',context)
 
 def post_slug_update(request):
     if request.method == 'POST':
@@ -123,3 +129,11 @@ def post_slug_update(request):
         return HttpResponse(title_slug)#Json response yap burayı
     return HttpResponse(status=405)    
 
+
+
+def delete_post(request,id):
+    
+    post=get_object_or_404(Post,id=id)
+    post.status="draft"
+    post.save()
+    return redirect("blog:repository")

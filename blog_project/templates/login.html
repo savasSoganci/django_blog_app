@@ -17,16 +17,24 @@
                 {% if field.help_text %}
                     <p style="color: grey;">{{field.help_text}}</p>
                 {% endif %}
-
+                
                 {% for error in field.errors %}
-                    <p style='color: red;'>{{error}}</p>
+                    <p style='color: red;'>{{error|escape}}</p>
                 {% endfor %}
                 
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+
                 {% if login_form.non_field_errors %}
                     <div style="color:red;">
                         <p>{{login_form.non_field_errors}}</p>
                     </div>
-                {% else %}
+                
                 {% endif %}
             </p>
 

@@ -59,12 +59,11 @@ p{
   margin-left: 1%;
   
 }
-.post_title h1{
+.post_title h2{
   margin-left: 7%;
   color: aqua;
   font-family: "Lucida Handwriting", Lucida, cursive;
   font-size: 200%;
-  
 }
 .text_center{
   word-wrap: break-word;
@@ -82,3 +81,4 @@ p{
   font-size: 125%;
   text-align: center;
 }
+

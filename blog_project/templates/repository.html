@@ -92,8 +92,10 @@
                            </div>
                            <div class="col-md-5">
                               <div class="text-bg">
-                                 <h1>{{user_post.title}}</h1>
+                                 <h2>{{user_post.title}}</h2>
                                  <span>{{user_post.content|safe}}</span>
+                                 <a href="{% url 'blog:delete-post' user_post.id %}">Sil</a><br>
+                                 <a href="{% url 'blog:update-post' user_post.id %}">Güncelle</a>
                               </div>
                            </div>
                         </div>

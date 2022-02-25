@@ -35,7 +35,7 @@ class AddPostForm(forms.ModelForm):
     )
     image= forms.ImageField(required=False)
     url=forms.URLField(required=False)
-    email=forms.EmailField(required=False)
+    email=forms.EmailField(required=False,initial='deneme@deneme.com')
     title=forms.CharField(widget=forms.TextInput(attrs={'id':'title_blank'}))
     slug=forms.SlugField(required=False,disabled=True,widget=forms.TextInput(attrs={'id':'slug_blank'}))
     class Meta:

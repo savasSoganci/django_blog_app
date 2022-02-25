@@ -11,5 +11,4 @@ class PostAdmin(admin.ModelAdmin):
    date_hierarchy = 'publish'
    ordering=('status','publish')
    autocomplete_fields = ['author'] #database'i parça parça getirmeyi sağlıyor.
-   
- 
+

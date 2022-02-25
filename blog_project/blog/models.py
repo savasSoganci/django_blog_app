@@ -12,7 +12,7 @@ from django.core.files.storage import FileSystemStorage
 from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
 from django.core.exceptions import ObjectDoesNotExist
-
+from blog.myshortcuts import get_object_or_None
 def validate_mail(value):
     if "@gmail.com" in value:
         return value
@@ -60,25 +60,18 @@ class Post(TrackerMixin):
     publish = models.DateTimeField()
     status = models.CharField(max_length=10, choices=STATUS_CHOICES, default="draft")
     image= models.ImageField(blank=True)
-    url=models.URLField(max_length=200,default='http://localhost:8000/blog',null=True, blank=True)
+    url = models.URLField(max_length=200,default='http://localhost:8000/blog',null=True, blank=True)
     email=models.EmailField(max_length=30,validators =[validate_mail],null=True, blank=True)
     class Meta:
         unique_together=(('title','slug'))
 
     
-    #TODO: *args,**kwargs abstract model
-    def get_object_or_None(slug_string):#Bu static olmalı mı acaba? Dışardan kullanmıyorum diye koymadım. Aynı sınıfta olduğu için static yapmadan kullanabilirim bence.
-        try:
-            obj=Post.objects.get(slug=slug_string)
-            return obj
-        except ObjectDoesNotExist as e:
-            return None
-
+   
     #TODO en büyüğü döndür direkt sorguda        
     @staticmethod
     def making_slug2(title_string):
         baseslug = slugify(title_string)
-        if(Post.get_object_or_None(baseslug) is not None):#metot çağırma gibi işlemleri if'in içinde yapma okunabilirliği azaltıyor. Maliyet artar ama önemsiz.
+        if(get_object_or_None(Post,baseslug,title_string) is not None):#metot çağırma gibi işlemleri if'in içinde yapma okunabilirliği azaltıyor. Maliyet artar ama önemsiz.
             slugs_object=Post.objects.filter(slug__startswith=baseslug+"-" , title=title_string)#değişken adı saçma.
             slug_number=2
             for a_object in slugs_object:
@@ -92,11 +85,12 @@ class Post(TrackerMixin):
     @staticmethod
     def making_slug(title_string):
         baseslug = slugify(title_string)
-        if(Post.get_object_or_None(baseslug) is not None):
-            slug_number=2
+        deneme=Post.objects.filter(title='deneme999')#Burada aslında sorgu yapıyoruz. Onu deneme değişkenine atıyoruz.
+        if(get_object_or_None(Post,slug=baseslug,title=title_string) is not None):#get direkt database'e istek atar ama filter atmaz değişkene attığında onla ilgili bir query oluşturur sadece nerede atacağını nasıl karar verdiğine aşağıdaki metodu araştırarak bul.
+            slug_number=2#Magic methods,dunder methods aynı şey araştır
             while True:              
                 baseslug_temp=baseslug+'-'+str(slug_number)
-                if(Post.get_object_or_None(baseslug_temp) is not None):
+                if(get_object_or_None(Post,slug=baseslug_temp,title=title_string) is not None):
                     slug_number+=1
                     continue
                 else:
